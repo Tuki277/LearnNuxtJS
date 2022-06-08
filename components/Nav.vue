@@ -3,7 +3,8 @@
     <div class="container">
       <nav class="nav nav-masthead d-flex justify-content-end">
         <NuxtLink to="/news" class="text-white mr-5"> News </NuxtLink>
-        <NuxtLink to="/category" class="text-white"> Category </NuxtLink>
+        <NuxtLink to="/category" class="text-white mr-5"> Category </NuxtLink>
+        <NuxtLink to="/login" class="text-white">Logout</NuxtLink>
       </nav>
     </div>
   </div>

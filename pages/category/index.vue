@@ -14,11 +14,13 @@
         <ul class="list-group">
           <li
             class="list-group-item d-flex justify-content-between align-items-center"
+            v-for="item in listCategory"
+            :key="item.id"
           >
-            Cras justo odio
+            {{ item.title }}
             <div>
-              <a class="btn btn-danger" href="#" role="button">Delete</a>
-              <a class="btn btn-secondary" href="#" role="button">Edit</a>
+              <button class="btn btn-danger" href="#" role="button" @click="deleteCategory(item.id)">Delete</button>
+              <NuxtLink :to=" '/category/add/' + item.id" class="btn btn-secondary" href="#" role="button">Edit</NuxtLink>
             </div>
           </li>
         </ul>
@@ -28,8 +30,18 @@
 </template>
 
 <script>
+
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: 'index',
+  created() {
+    this.getAllCategory();
+  },
+  computed: mapState(["listCategory"]),
+  methods: {
+    ...mapActions(["deleteCategory", "getAllCategory"]),
+  }
 }
 </script>
 

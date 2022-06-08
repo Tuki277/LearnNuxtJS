@@ -6,7 +6,7 @@
         <input
           type="text"
           class="form-control"
-          v-model="Title"
+          v-model="title"
           placeholder="Title"
           aria-describedby="basic-addon1"
         />
@@ -22,18 +22,40 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: 'edit',
   data () {
     return {
-      Title: '',
-      Content: ''
+      id: '',
+      title: ''
     }
   },
   methods: {
+    ...mapActions(["getCategoryById", "updateCategory"]),
+    ...mapState(["listCategory"]),
     onSubmit (e) {
+      console.log("id == ", this.$route.params.id)
       e.preventDefault();
-      console.log(this.Title)
+      const obj = {
+        dataUpdate: {
+          title : this.title
+        },
+        id: this.id
+      }
+      this.updateCategory(obj);
+    },
+  },
+  created () {
+    this.id = this.$route.params.id;
+    this.getCategoryById(this.id);
+  },
+  watch: {
+    '$store.state.time' (value) {
+      if (value) {
+        this.title = this.$store.state.listCategory.data.title
+      }
     }
   }
 }

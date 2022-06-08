@@ -6,22 +6,13 @@
         <input
           type="text"
           class="form-control"
-          v-model="Title"
+          v-model="title"
           placeholder="Title"
           aria-describedby="basic-addon1"
         />
       </div>
-      <div class="input-group mb-3">
-        <textarea
-          type="text"
-          class="form-control"
-          v-model="Content"
-          placeholder="Content"
-          aria-describedby="basic-addon1"
-        ></textarea>
-      </div>
       <div class="float-right">
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-primary">Create</button>
         <NuxtLink to="/category" class="text-white">
           <button type="submit" class="btn btn-danger">Cancel</button>
         </NuxtLink>
@@ -31,18 +22,23 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex';
+
 export default {
   name: 'add',
   data () {
     return {
-      Title: '',
-      Content: ''
+      title: '',
     }
   },
   methods: {
+    ...mapActions(['addCategory']),
     onSubmit (e) {
       e.preventDefault();
-      console.log(this.Title)
+      this.addCategory({
+        title: this.title
+      })
     }
   }
 }
