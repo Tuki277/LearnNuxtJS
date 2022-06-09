@@ -37,6 +37,7 @@
 
       <div class="input-group mb-3">
         <textarea
+          rows="10"
           type="text"
           class="form-control"
           v-model="content"
@@ -45,7 +46,7 @@
         ></textarea>
       </div>
       <div class="float-right">
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-primary">Create</button>
         <NuxtLink to="/news" class="text-white">
           <button type="submit" class="btn btn-danger">Cancel</button>
         </NuxtLink>
@@ -68,10 +69,14 @@ export default {
   },
   computed: mapState(['listCategory']),
   methods: {
-    ...mapActions(['getAllCategory']),
+    ...mapActions(['getAllCategory', 'addNews']),
     onSubmit(e) {
       e.preventDefault()
-      console.log(this.Title)
+      this.addNews({
+        title: this.title,
+        body: this.content,
+        category_id: this.category
+      })
     },
   },
   created() {

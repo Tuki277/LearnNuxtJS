@@ -36,7 +36,6 @@ export default {
     ...mapActions(["getCategoryById", "updateCategory"]),
     ...mapState(["listCategory"]),
     onSubmit (e) {
-      console.log("id == ", this.$route.params.id)
       e.preventDefault();
       const obj = {
         dataUpdate: {

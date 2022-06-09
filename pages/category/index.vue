@@ -19,7 +19,7 @@
           >
             {{ item.title }}
             <div>
-              <button class="btn btn-danger" href="#" role="button" @click="deleteCategory(item.id)">Delete</button>
+              <button class="btn btn-danger" role="button" @click="deleteCategory(item.id)">Delete</button>
               <NuxtLink :to=" '/category/add/' + item.id" class="btn btn-secondary" href="#" role="button">Edit</NuxtLink>
             </div>
           </li>

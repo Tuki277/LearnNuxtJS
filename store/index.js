@@ -14,7 +14,8 @@ const createStore = () => {
         state[bind.state] = bind.result.data;
       },
       deleteMutations: (state, bind) => {
-        state[bind.state] = state.listCategory.filter(x => x.id !== bind.id)
+      console.log("🚀 ~ file: index.js ~ line 17 ~ createStore ~ bind", bind)
+        state[bind.state] = state[bind.state].filter(x => x.id !== bind.id)
       },
     },
     actions: {
@@ -119,7 +120,7 @@ const createStore = () => {
           const link = api(`news/${id}`);
           await this.$axios.get(link, configAxios()).then(res => {
             this.state.time = Math.random();
-            this.state.listCategory = res.data
+            this.state.listNews = res.data
           }).catch(e => console.log(e))
         } catch (error) {
           console.log(error);
@@ -130,7 +131,7 @@ const createStore = () => {
           const link = api("news");
           await this.$axios.post(link, data, configAxios()).then(res => {
             alert(res.data.message);
-            if (!res.data.error) {
+            if (res.data.error) {
               this.$router.push('/news');
             }
           }).catch(e => console.log(e));
